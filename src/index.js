@@ -6,7 +6,7 @@ import "./styles.css";
 function Images(props) {
   return (
     <div>
-      <label>Round this beast up!</label>
+      <label>Round the corners on {props.name}</label>
       <input
         type={"range"}
         step={1}
@@ -28,7 +28,7 @@ function Images(props) {
 
 class Thing extends React.Component {
   state = {
-    name: "_______",
+    name: "________________",
     imgRadius: 0
   };
 
@@ -48,12 +48,13 @@ class Thing extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.name ? this.state.name : "__"} </h1>
+        <h1>{this.state.name ? this.state.name : "________________"} </h1>
         <label>Guess what the beasts name is: </label>
         <input placeholder={"type name here"} onChange={this.handleChange} />
         <Images
           handleImgRadius={this.handleImgRadius}
           imgRadius={this.state.imgRadius}
+          name={this.state.name}
         />
       </div>
     );
