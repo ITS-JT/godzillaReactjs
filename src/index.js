@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-function Images(props) {
+function Image(props) {
   return (
     <div>
       <label>Round the corners on {props.name}</label>
+      <br />
       <input
         type={"range"}
         step={1}
@@ -26,13 +27,23 @@ function Images(props) {
   );
 }
 
+function NameTheBeast(props) {
+  return (
+    <div>
+      <h1>{props.name ? props.name : "________________"} </h1>
+      <label>Guess what the beasts name is: </label>
+      <input placeholder={"type name here"} onChange={props.handleNameChange} />
+    </div>
+  );
+}
+
 class Thing extends React.Component {
   state = {
     name: "________________",
     imgRadius: 0
   };
 
-  handleChange = e => {
+  handleNameChange = e => {
     this.setState({
       name: e.target.value
     });
@@ -48,10 +59,11 @@ class Thing extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.state.name ? this.state.name : "________________"} </h1>
-        <label>Guess what the beasts name is: </label>
-        <input placeholder={"type name here"} onChange={this.handleChange} />
-        <Images
+        <NameTheBeast
+          name={this.state.name}
+          handleNameChange={this.handleNameChange}
+        />
+        <Image
           handleImgRadius={this.handleImgRadius}
           imgRadius={this.state.imgRadius}
           name={this.state.name}
